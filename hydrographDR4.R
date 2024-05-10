@@ -19,7 +19,7 @@ g0 <- ggplot(dat, aes(DOY1, P))+
 	labs(tag = "a)",title="") +
 	scale_y_reverse()+
 #	scale_x_date(date_labels = ("%m/%d"))+
-	theme(axis.title.x    = element_blank(),
+	theme(axis.title.x = element_blank(),
 			axis.text.x = element_blank(),
 			axis.ticks.x = element_blank())
 
@@ -49,8 +49,8 @@ g2 <- ggplot(dat, aes(DOY1, ET))+
 	ylab("ETo (mm)") +
 	labs(tag = "c)") +
 	scale_x_date(date_labels = ("%m/%d"))+
-	theme(axis.title.x    = element_blank(),
-			axis.ticks.x    = element_blank())
+	theme(axis.title.x = element_blank(),
+			axis.ticks.x = element_blank())
 
 g3 <- ggplot(dat,aes(DOY1, obs1*100))+
 	geom_rect(aes(xmin=as.Date("2022-08-20"), 
@@ -87,10 +87,7 @@ g4 <- ggplot(dat,aes(DOY1, obs2*100))+
 				axis.ticks.x = element_blank())
 
 g5 <- ggplot(dat,aes(DOY1, obs3*100))+
-		geom_rect(aes(xmin=as.Date("2022-08-20"), 
-								xmax=as.Date("2022-12-31"),
-								ymin=-Inf, ymax=Inf),
-						fill="grey95")+
+	geom_rect(aes(xmin=as.Date("2022-08-20"), xmax=as.Date("2022-12-31"), ymin=-Inf, ymax=Inf),fill="grey95")+
 	geom_point(color="blue") +
 	geom_line(aes(DOY1,sim3*100),color="red")+
 	scale_y_continuous(labels=scaleFUN,limits = c(9, 22))+
@@ -116,7 +113,6 @@ g6 <- ggplot(dat,aes(DOY1, obs4*100))+
 	labs(tag = "g)") +
 	theme_bw()
 
-
 library(grid)
 library(gridExtra)
 g00 <- ggplot_gtable(ggplot_build(g0))
@@ -127,10 +123,9 @@ g04 <- ggplot_gtable(ggplot_build(g4))
 g05 <- ggplot_gtable(ggplot_build(g5))
 g06 <- ggplot_gtable(ggplot_build(g6))
 
-
 maxWidth = unit.pmax(g00$widths[2:3],g01$widths[2:3], g02$widths[2:3], 
-						g03$widths[2:3],g04$widths[2:3],g05$widths[2:3],
-						g06$widths[2:3])
+		     g03$widths[2:3], g04$widths[2:3], g05$widths[2:3], g06$widths[2:3])
+
 g00$widths[2:3] <- maxWidth
 g01$widths[2:3] <- maxWidth
 g02$widths[2:3] <- maxWidth
@@ -138,7 +133,6 @@ g03$widths[2:3] <- maxWidth
 g04$widths[2:3] <- maxWidth
 g05$widths[2:3] <- maxWidth
 g06$widths[2:3] <- maxWidth
-hydro = grid.arrange(g00,g01, g02, g03,g04,g05, g06, ncol = 1, 
-						 heights = c(2, 2, 2, 2, 2, 2, 2))
+hydro = grid.arrange(g00,g01, g02, g03,g04,g05, g06, ncol = 1, heights = c(2, 2, 2, 2, 2, 2, 2))
 ggsave(hydro,file=paste0("hydroDR4.png"), width = 8, height = 12, dpi=700)
 ggsave("hydroDR4.pdf", hydro)
