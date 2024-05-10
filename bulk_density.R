@@ -7,6 +7,5 @@ hist(dat$BD)
 md <- aov(BD~Hurricane*Depth, data=dat)
 summary(md)
 plot(md)
-
 TukeyHSD(md, "Hurricane")
 TukeyHSD(md, "Depth")
