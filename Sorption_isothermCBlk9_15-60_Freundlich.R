@@ -23,8 +23,6 @@ science_theme <- theme(plot.background = element_rect(fill = "white"),
 						color = "black"),
 						strip.background.x = element_rect("white"),
 						strip.background.y = element_rect("white"))
-
-
 ## Sorption isotherm
 soil_type=c("B","C")
 depth = c("15-30","30-45","45-60")
@@ -41,12 +39,9 @@ for (j in 1:length(seq(2))){
 		R2[i]=format(summary(model)$r.squared, digits = 3)
 		KLL[i]=exp(confint(model)[1,1])
 		KUL[i]=exp(confint(model)[1,2])
-		eq <- substitute(italic(R)^2~"="~r2, 
-									 list(r2 = R2[i]))
-		qe <- substitute(italic(K[D])~"="~KD, 
-									 list(KD = Kd[i]))
-		qed <- substitute(italic(Depth)~"="~depth~"cm", 
-										list(depth = depth[i]))
+		eq <- substitute(italic(R)^2~"="~r2, list(r2 = R2[i]))
+		qe <- substitute(italic(K[D])~"="~KD, list(KD = Kd[i]))
+		qed <- substitute(italic(Depth)~"="~depth~"cm", list(depth = depth[i]))
 		eq=as.character(as.expression(eq))
 		qe=as.character(as.expression(qe))
 		qed=as.character(as.expression(qed))
@@ -64,8 +59,7 @@ for (j in 1:length(seq(2))){
 			science_theme
   	ggsave(p, file=paste0("plot_", soil_type[j], depth[i],".png"), width = 6, height = 4)
 	}
-	output <- cbind(Kd = as.numeric(Kd),KLL=as.numeric(KLL),KUL=as.numeric(KUL),
-					R2 = as.numeric(R2))
+	output <- cbind(Kd = as.numeric(Kd),KLL=as.numeric(KLL),KUL=as.numeric(KUL), R2 = as.numeric(R2))
 	output <- round(output, 3)
 	output2 <- cbind(depth=seq(30,60,15),output)
 	
