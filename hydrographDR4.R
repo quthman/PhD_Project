@@ -113,7 +113,6 @@ g6 <- ggplot(dat,aes(DOY1, obs4*100))+
 	labs(tag = "g)") +
 	theme_bw()
 
-
 library(grid)
 library(gridExtra)
 g00 <- ggplot_gtable(ggplot_build(g0))
@@ -124,9 +123,9 @@ g04 <- ggplot_gtable(ggplot_build(g4))
 g05 <- ggplot_gtable(ggplot_build(g5))
 g06 <- ggplot_gtable(ggplot_build(g6))
 
-
 maxWidth = unit.pmax(g00$widths[2:3],g01$widths[2:3], g02$widths[2:3], 
 		     g03$widths[2:3], g04$widths[2:3], g05$widths[2:3], g06$widths[2:3])
+
 g00$widths[2:3] <- maxWidth
 g01$widths[2:3] <- maxWidth
 g02$widths[2:3] <- maxWidth
