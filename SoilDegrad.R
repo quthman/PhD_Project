@@ -37,8 +37,7 @@ for (i in 1:length(Soil)){
 			
 	}
 
-	output <- cbind(k=as.numeric(k), kll = as.numeric(kll), 
-									kul = as.numeric(kul),R2 = as.numeric(R2))
+	output <- cbind(k=as.numeric(k), kll = as.numeric(kll), kul = as.numeric(kul),R2 = as.numeric(R2))
 	#output <- cbind(S0 = as.numeric(S0),S0LL=as.numeric(S0LL),S0UL=as.numeric(S0UL)
 	#								, kll = as.numeric(kll), kul = as.numeric(kul),R2 = as.numeric(R2))
 	output <- round(output, 3)
